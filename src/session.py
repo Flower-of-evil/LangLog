@@ -69,3 +69,13 @@ def view_sessions():
     for s in sessions:
         print(
             f"{s['date']} | {s['duration_min']} мин | {s['activity_type']} | {s['materials']} | Оценка: {s['effectiveness_rating']}")
+
+        # ========== Lambda и filter для задания ==========
+
+        def get_speaking_sessions(sessions):
+            """Пример использования filter с lambda для отбора сессий говорения"""
+            return list(filter(lambda s: s['activity_type'] == 'говорение', sessions))
+
+        def get_session_durations(sessions):
+            """Пример использования map для извлечения продолжительностей"""
+            return list(map(lambda s: s['duration_min'], sessions))
