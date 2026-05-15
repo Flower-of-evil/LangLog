@@ -86,3 +86,27 @@ def check_level_up():
                     conn.execute("UPDATE languages SET level = ? WHERE id = ?", (new_level, lang['id']))
                     conn.commit()
                 print(f"Уровень обновлён на {new_level}")
+
+                # ========== Функции для демонстрации требований задания ==========
+
+                def get_high_rating_sessions(sessions, min_rating=8):
+                    """Отбор сессий с высокой самооценкой с помощью filter и lambda"""
+                    return list(filter(lambda s: s['effectiveness_rating'] >= min_rating, sessions))
+
+                def get_durations_list(sessions):
+                    """Извлечение продолжительностей через map и lambda"""
+                    return list(map(lambda s: s['duration_min'], sessions))
+
+                def get_average_rating(sessions):
+                    """Подсчёт средней оценки через map и sum"""
+                    if not sessions:
+                        return 0
+                    return sum(map(lambda s: s['effectiveness_rating'], sessions)) / len(sessions)
+
+                def get_activity_distribution(sessions):
+                    """Распределение по типам активностей с использованием map"""
+                    activities = list(map(lambda s: s['activity_type'], sessions))
+                    result = {}
+                    for act in set(activities):
+                        result[act] = activities.count(act)
+                    return result
