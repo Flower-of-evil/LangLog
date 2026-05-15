@@ -79,3 +79,21 @@ def view_sessions():
         def get_session_durations(sessions):
             """Пример использования map для извлечения продолжительностей"""
             return list(map(lambda s: s['duration_min'], sessions))
+
+        # ========== Функции для демонстрации требований задания ==========
+
+        def get_sessions_by_type(sessions, activity_type):
+            """Фильтрация сессий по типу активности с помощью filter и lambda"""
+            return list(filter(lambda s: s['activity_type'] == activity_type, sessions))
+
+        def get_total_duration(sessions):
+            """Подсчёт общего времени через map и sum"""
+            return sum(map(lambda s: s['duration_min'], sessions))
+
+        def get_activity_types_list(sessions):
+            """Извлечение списка типов активностей с помощью map"""
+            return list(map(lambda s: s['activity_type'], sessions))
+
+        def sort_sessions_by_rating(sessions):
+            """Сортировка сессий по оценке с помощью sorted и lambda"""
+            return sorted(sessions, key=lambda s: s['effectiveness_rating'], reverse=True)
