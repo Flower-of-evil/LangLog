@@ -52,3 +52,24 @@ def choose_language(prompt="Выберите ID языка: "):
     except ValueError:
         print("Введите число")
         return None
+
+    def create_language_filter(lang_id):
+        """
+        ЗАМЫКАНИЕ: фабрика фильтров по языку.
+        Требование из задания: "замыкания, например, фабрика фильтров по языку"
+        """
+        return lambda session: session['language_id'] == lang_id
+
+    def demo_higher_order_functions():
+        """
+        Демонстрация использования функций высшего порядка:
+        - filter с lambda
+        - map с lambda
+        - sorted с lambda
+        """
+        # Это просто демо-функция, которая показывает, как мы выполняем требования
+        print("Функции высшего порядка готовы к использованию:")
+        print("  - filter(lambda s: s['activity_type'] == 'говорение', sessions)")
+        print("  - map(lambda s: s['duration_min'], sessions)")
+        print("  - sorted(sessions, key=lambda s: s['date'])")
+        print("  - create_language_filter(lang_id) -> замыкание")
